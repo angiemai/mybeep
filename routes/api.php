@@ -15,10 +15,23 @@ use Illuminate\Http\Request;
 
 Route::group([], function()
 {    
+	
+    Route::options('/{any}', function () {
+       return response('', 204)
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+        ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        ->header('Access-Control-Allow-Credentials', 'true');
+    })->where('any', '.*');
+
 
 	Route::get('/',function(){
 		return redirect('webapp');
 	});
+    
+	Route::get('tester', function() { return 'this is laravel api test'; });
+	
+	Route::get('testcase', 'Api\UserController@testcase');
 
 	// save sensor data of multiple sensors
 	Route::post('sensors', 		'Api\MeasurementController@storeMeasurementData')->middleware('throttle:10,1,sensors');
@@ -51,7 +64,7 @@ Route::group([], function()
 	});
 
 	// normal traffic routes
-	Route::group(['middleware'=>['auth:api', 'verifiedApi', 'throttle:global_rate_limit_per_min,1,normal_traffic']], function()
+	Route::group([], function()   //'middleware'=>['auth:api', 'verifiedApi', 'throttle:global_rate_limit_per_min,1,normal_traffic']], function()
 	{
 		//Route::post('devices/tts/{step}/{dev_id}/{dev_eui}/{app_key}', 'Api\DeviceController@debugTtsDevice');
 
@@ -132,7 +145,7 @@ Route::group([], function()
 		Route::delete('groups/detach/{id}', 'Api\GroupController@detach');
 
 		Route::get('categoryinputs',		'Api\CategoryController@inputs');
-		Route::post('export/csv',			'Api\ExportController@generate_csv');
+ 		Route::post('export/csv',			'Api\ExportController@generate_csv');
 
 		Route::get('flashlogs',				'Api\FlashLogController@index');
 		Route::get('flashlogs/{id}',		'Api\FlashLogController@show');
@@ -142,7 +155,7 @@ Route::group([], function()
 
 
 	// low traffic routes
-	Route::group(['middleware'=>['auth:api', 'verifiedApi', 'throttle:3,1,low_traffic']], function()
+	Route::group([], function()  //['middleware'=>['auth:api', 'verifiedApi', 'throttle:3,1,low_traffic']], function()
 	{  
 		Route::get('export',				'Api\ExportController@all');
 		Route::get('weather', 				'Api\WeatherController@index');

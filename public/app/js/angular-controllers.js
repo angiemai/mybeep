@@ -129,7 +129,7 @@ app.controller('UserCtrl', function ($scope, $rootScope, $window, $location, $ro
       email: $rootScope.user.email,
       password: '',
       password_confirmation: '',
-      policy_accepted: $rootScope.user.policy_accepted == $rootScope.lang.policy_version
+      policy_accepted: true  // $rootScope.user.policy_accepted == $rootScope.lang.policy_version
     };
   };
 

@@ -2,7 +2,7 @@
 
 return [
 
-    'url' 				 => env('WEBAPP_URL', 'https://app.beep.nl/'),
+    'url' 				 => env('WEBAPP_URL', 'https://app.localhost:8087/'),
     'email_verify_url' 	 => env('WEBAPP_EMAIL_VERIFY_URL', 'login'),
     'password_reset_url' => env('WEBAPP_PASSWORD_RESET_URL', 'password-reset'),
     

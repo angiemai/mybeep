@@ -1,0 +1,4 @@
+[influxuser]
+  token = "o_2lUO8IugTxZ3qbgb8NOmo6uq25l6wFWLDZMHy7JaY46zjDVy2PL3NlGqk_m5fGmgTfDSqLg1kD63hSA3Jt-Q=="
+  org = "beep"
+  active = true

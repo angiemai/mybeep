@@ -246,10 +246,6 @@ docker-compose stop
 ### Clear/Clean the project
 
 ```sh
-docker-compose stop
-docker-compose down -v
-docker-compose up -d --build
-
 docker-compose run --rm artisan clear:data
 docker-compose run --rm artisan cache:clear
 docker-compose run --rm artisan config:clear

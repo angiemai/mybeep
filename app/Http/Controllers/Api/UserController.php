@@ -25,6 +25,25 @@ use Illuminate\Support\Facades\App;
 class UserController extends Controller
 {
 
+
+      /**
+    api/user/testcase
+    Send test response
+    @response{
+        "message": "reminder_sent"
+    }
+    */
+    public function testcase(Request $request)
+    {
+       echo "inside testcase";
+       echo xdebug_info();
+                $code = 200;
+                $response = array('message' => 'reminder_sent');
+
+        // return the response
+        return Response::json($response, $code);
+    }
+
     /**
     api/authenticate 
     Authorize a user and login with an api_token. Used for persistent login in webapp.
@@ -82,11 +101,12 @@ class UserController extends Controller
             'email' => $request->get('email'),
             'password' => $request->get('password')
         );
-
+   
         if(Auth::attempt($credentials))
         {
             if ($request->user()->hasVerifiedEmail())
             {
+                echo "email is verified";
                 if (isset($request->user()->locale))
                     App::setlocale($request->user()->locale);
                 
@@ -94,11 +114,13 @@ class UserController extends Controller
             }
             else
             {
+                echo "email is not verified";
                 return $this->notVerified($request);
             }
         }
         else
-        {
+        {                echo "not authenticated";
+
             return $this->notAuthenticated($request);
         }
     }
@@ -128,7 +150,7 @@ class UserController extends Controller
     */
     public function register(Request $request)
     {
-
+echo "inside register";
         $validator = Validator::make
         (
             $request->all(),
@@ -136,7 +158,7 @@ class UserController extends Controller
             (
                 'email'         => 'bail|required|email|unique:users',
                 'name'          => 'nullable|string|max:100',
-                'password'      => 'required|min:8|confirmed',
+                'password'      => 'required|min:2|confirmed',
                 'policy_accepted'=>'required'
             ),
             array
@@ -147,7 +169,7 @@ class UserController extends Controller
             )
         );
 
-
+echo "validation";
         // check if the data is validated
         if($validator->fails())
         {
@@ -399,7 +421,7 @@ class UserController extends Controller
             }
             else if ($request->filled('policy_accepted') == false || $request->input('policy_accepted') == false)
             {
-                $user->policy_accepted = null;
+                $user->policy_accepted = 'beep_terms_2018_05_25_avg_v1';
                 $save = true;
             }
 

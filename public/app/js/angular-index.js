@@ -214,11 +214,11 @@ app.run(function ($rootScope, $location, $window, $route, $routeParams, amMoment
   };
 
   $rootScope.checkPolicy = function (e, data) {
-    if ($rootScope.user.policy_accepted != $rootScope.lang.policy_version) {
-      //console.log($rootScope.user);
-      $location.path('/user/edit');
-      $rootScope.showMessage($rootScope.lang.approve_policy);
-    }
+   // if ($rootScope.user.policy_accepted != $rootScope.lang.policy_version) {
+   //   //console.log($rootScope.user);
+   //   $location.path('/user/edit');
+   //   $rootScope.showMessage($rootScope.lang.approve_policy);
+   // }
   };
 
   $rootScope.$on('userUpdated', $rootScope.checkPolicy);

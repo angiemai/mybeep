@@ -158,7 +158,7 @@ A simple setup for small installations can be achived with [docker-compose](http
 ```bash
 `php artisan key:generate`
 `composer install && sudo chmod -R 777 storage && sudo chmod -R 777 bootstrap/cache`
-`docker-compose up -d --build`
+`docker-compose up -d --build'
 `docker-compose run --rm artisan migrate --seed`
 ```
 7. Optional: verify whether the docker containers are running: run `docker ps`
@@ -383,3 +383,20 @@ If you discover a security vulnerability within BEEP, please send an e-mail to s
 # License
 
 The BEEP framework is open-sourced software licensed under the [GNU AGPLv3 license](http://www.gnu.org/licenses/agpl-3.0.txt).
+
+
+/////////////////
+    Check the .env file to see whether the APP_KEY is present. There should be a string that begins with "base64:" and ends with "=". If there is no string or it doesn't match that pattern, remove any characters that are there, and generate a new key:
+
+    php artisan key:generate
+
+    Clear the configuration cache:
+
+    php artisan config:cache
+
+    Try to setup the development server:
+
+    php artisan serve
+
+    Go to the browser and enter the localhost url that was given. For example: http://127.0.0.1:8000 (the port may be different, if the ports are already in use).
+

@@ -2,6 +2,8 @@ FROM nginx:stable-alpine
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY ./compose/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./compose/nginx/nginx.conf  /etc/nginx/nginx.conf
+
 COPY ./compose/nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # Make Directory - Workspace

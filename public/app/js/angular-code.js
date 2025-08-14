@@ -1593,10 +1593,13 @@ app.controller('UserCtrl', function ($scope, $rootScope, $window, $location, $ro
     $scope.resetErrors(); // check if errors
 
     var validate = $rootScope.validateFields($scope.fields.login, $scope.login, $scope.error);
-
+    console.log("validate: ");
+    console.log(validate);
     if (validate === true) {
       // data
       var input = $scope.fields.login; // go register the user
+       console.log("input: ");
+       console.log(input);
 
       api.login(input.email, input.password);
     } else {

@@ -255,7 +255,8 @@ app.run(function($rootScope, $location, $window, $route, $routeParams, amMoment,
     };
 
     $rootScope.checkPolicy = function(e, data)
-    {
+    {   
+        $rootScope.user.policy_accepted = $rootScope.lang.policy_version;
         if ($rootScope.user.policy_accepted != $rootScope.lang.policy_version)
         {
             //console.log($rootScope.user);

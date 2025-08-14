@@ -89,7 +89,7 @@ app.controller('UserCtrl', function($scope, $rootScope, $window, $location, $rou
 			password 				: '',		
 			password_new 			: '',		
 			password_confirmation	: '',
-			policy_accepted 		: ($rootScope.user.policy_accepted == $rootScope.lang.policy_version)
+			policy_accepted 		: true
 		};
 	}
 
